@@ -1,7 +1,7 @@
 {
-  "name": "eslint-config-wesbos",
+  "name": "eslint-config-adamansubtracm",
   "version": "1.0.1",
-  "description": "ESLint and Prettier Config from Wes Bos",
+  "description": "ESLint and Prettier Config from Adam Knee. Based on Wes Bos' config.",
   "keywords": [
     "javascript",
     "ecmascript",
@@ -11,8 +11,8 @@
     "prettier"
   ],
   "main": "index.js",
-  "repository": "git@github.com:wesbos/eslint-config-wesbos.git",
-  "author": "Wes bos <wes@wesbos.com>",
+  "repository": "git@github.com:AdamAnSubtractM/eslint-config-adamansubtractm.git",
+  "author": "Adam Knee <adamlknee+npm@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "babel-eslint": "^10.1.0",
