@@ -114,5 +114,13 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/comma-dangle': ['off'],
   },
+  overrides: [
+    {
+      files: ['*.ts, *.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
   plugins: ['html', 'prettier', 'react-hooks'],
 };
