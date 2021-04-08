@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-adamansubtractm",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ESLint and Prettier Config from Adam Knee. Based on Wes Bos' config.",
   "keywords": [
     "javascript",
