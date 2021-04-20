@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-adamansubtractm",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "ESLint and Prettier Config from @AdamAnSubtractM.",
   "keywords": [
     "javascript",
