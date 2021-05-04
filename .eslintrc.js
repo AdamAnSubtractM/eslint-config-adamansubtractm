@@ -137,6 +137,8 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     // this is intended to prevent you from typing certain entities by mmistake but incorrectly reports issues so we'll turn it off
     'react/no-unescaped-entities': 'off',
+    // allows you to do prop spreading
+    'react/jsx-props-no-spreading': 'off',
     // ensures you either have an htmlFor on a label or you wrap it in a control
     'jsx-a11y/label-has-associated-control': [
       'error',
