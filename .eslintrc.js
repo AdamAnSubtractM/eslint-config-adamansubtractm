@@ -139,6 +139,13 @@ module.exports = {
     'react/no-unescaped-entities': 'off',
     // allows you to do prop spreading
     'react/jsx-props-no-spreading': 'off',
+    /**
+     * Disabled forcing button to hae type. To be clear, a button SHOULD have a type.
+     * There is a bug where this rule does not pick up types from Typescript or default props.
+     *
+     * https://github.com/yannickcr/eslint-plugin-react/issues/1555
+     * */
+    'react/button-has-type': 'off',
     // ensures you either have an htmlFor on a label or you wrap it in a control
     'jsx-a11y/label-has-associated-control': [
       'error',
