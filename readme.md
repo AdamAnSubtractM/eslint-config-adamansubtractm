@@ -1,36 +1,66 @@
 <p align="center">
-  <a href="https://adamknee.net">
-    <img alt="Adam Knee's Logo" src="https://res.cloudinary.com/adamknee/image/upload/v1617733739/portfolio-gatsby/adam-knee-logo_s4ekbl.svg" width="330" />
+  <a href="https://adamknee.dev">
+    <img alt="Adam Knee's Logo" src="https://res.cloudinary.com/adamknee/image/upload/v1661364626/github/logo-w-banner_dzncvs.svg" width="2000" />
   </a>
 </p>
 
 # AdamAnSubtractM's Eslint & Prettier Setup
 
-These are my settings for ESLint and Prettier
+First things first, lets give credit where credit is due
+
+- Almost all of these settings and README instructions were forked from [Wes Bos' Eslint Config repo](https://github.com/wesbos/eslint-config-wesbos)
 
 ## What it does
 
-- Lints JavaScript and Typescript (JS, JSX, TS, TSX) based on the latest standards
-- Fixes issues and formatting errors with ESLint and fixes HTML and CSS/SCSS with Prettier
-- You can see all the [rules here](https://github.com/adamansubtractm/eslint-config-adamansubtractm/blob/master/.eslintrc.js)
+- Lints JavaScript & Typesript based on the latest standards
+- Fixes issues and formatting errors with Prettier
+- Lints + Fixes inside of html script tags
+- Lints + Fixes React via eslint-config-airbnb
+- You can see all the [rules here](https://github.com/adamansubtractm/eslint-config-adamansubtractm/blob/master/.eslintrc.js) - these generally abide by the code written in my courses. You are very welcome to overwrite any of these settings, or just fork the entire thing to create your own.
 
 ## Installing
 
+You can use eslint globally and/or locally per project.
+
 It's usually best to install this locally once per project, that way you can have project specific settings as well as sync those settings with others working on your project via git.
+
+I also install globally so that any project or rogue JS file I write will have linting and formatting applied without having to go through the setup. You might disagree and that is okay, just don't do it then 😃.
+
+## This doc references `pnpm`
+
+- This document references `pnpm`a lot! If you're not familiar with it, it's an alternative package manager, you can [read more about it here](https://pnpm.io/). A lot of these commands can be run exactly the same using `npm`. With that said, if you want to use `npm` or `yarn` or some other package manager, please do!
 
 ## Local / Per Project Install
 
-1. If you don't already have a `package.json` file, create one with `npm init`.
+1. If you don't already have a `package.json` file, create one with `pnpm init`.
 
-2. Then we need to install everything needed by the config:
+2. Then we need to install everything needed by the config (a.k.a - the dreaded peer dependencies):
 
-```bash
-npx install-peerdeps --dev eslint-config-adamansubtractm
-```
+- If you're using `pnpm` you can do this one of three ways:
 
-3. You can see in your package.json there are now a big list of devDependencies.
+  1. [Option 1] - Set your global pnpm config to always install peer deps:
 
-4. Create a `.eslintrc` file in the root of your project's directory (it should live where package.json does). Your `.eslintrc` file should look like this:
+  ```bash
+  pnpm config set auto-install-peers true
+  ```
+
+  2. [Option 2] - Tell `pnpm` to install peer dependencies for a specific project only:
+
+  ```bash
+  pnpm config set auto-install-peers true --location project
+  ```
+
+  3. [Option 3] - Create a `.npmrc` file in your specific project root that has the following in it:
+
+  ```bash
+  auto-install-peers=true
+  ```
+
+3.
+
+4.  You can see in your package.json there are now a big list of devDependencies.
+
+5.  Create a `.eslintrc` file in the root of your project's directory (it should live where package.json does). Your `.eslintrc` file should look like this:
 
 ```json
 {
@@ -38,9 +68,19 @@ npx install-peerdeps --dev eslint-config-adamansubtractm
 }
 ```
 
+For TypeScript projects, use `adamansubtractm/typescript`.
+
+```json
+{
+  "extends": ["adamansubtractm/typescript"]
+}
+```
+
+TypeScript users will also need a `tsconfig.json` file in their project. An empty object (`{}`) will do if this is a new project.
+
 Tip: You can alternatively put this object in your `package.json` under the property `"eslintConfig":`. This makes one less file in your project.
 
-5. You can add two scripts to your package.json to lint and/or fix:
+6. You can add two scripts to your package.json to lint and/or fix:
 
 ```json
 "scripts": {
@@ -49,7 +89,31 @@ Tip: You can alternatively put this object in your `package.json` under the prop
 },
 ```
 
-6. Now you can manually lint your code by running `npm run lint` and fix all fixable issues with `npm run lint:fix`. You probably want your editor to do this though.
+7. Now you can manually lint your code by running `pnpm run lint` and fix all fixable issues with `pnpm run lint:fix`. You probably want your editor to do this though.
+
+## Settings
+
+If you'd like to overwrite eslint or prettier settings, you can add the rules in your `.eslintrc` file. The [ESLint rules](https://eslint.org/docs/rules/) go directly under `"rules"` while [prettier options](https://prettier.io/docs/en/options.html) go under `"prettier/prettier"`. Note that prettier rules overwrite anything in my config (trailing comma, and single quote), so you'll need to include those as well.
+
+```js
+{
+  "extends": [
+    "adamansubtractm"
+  ],
+  "rules": {
+    "no-console": 2,
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 120,
+        "tabWidth": 8,
+      }
+    ]
+  }
+}
+```
 
 ## With VS Code
 
@@ -57,79 +121,87 @@ You should read this entire thing. Serious!
 
 Once you have done one, or both, of the above installs. You probably want your editor to lint and fix for you. Here are the instructions for VS Code:
 
-1. Required: Install the [ESLint package](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-2. Required: Install the [Prettier package](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-3. Optional: If the prettier settings don't get detected or you want to customize it, create a `.prettierrc` file that adds your formatting settings for HTML, CSS, and SCSS
-```json
-// example
-{
-  "tabWidth": 2
-}
-```
-4. Optional: If the prettier ignore settings don't get detected or you want to customize it, create a `.prettierignore` file that adds your formatting ignore settings for HTML, CSS, and SCSS. 
-```json
-// note: this is important to add (if it doesn't auto get picked up) if you want Eslint to control the formmatting of your js and ts files
-{
-  *.js
-  *.ts
-}
-```
-5. Recommended: Install [Formatting Toggle package](https://marketplace.visualstudio.com/items?itemName=tombonnike.vscode-status-bar-format-toggle). This allows you to toggle on and off the formatOnSave option. This is helpful for projects that you don't want the formatting applied to
-6. Now we need to setup some VS Code settings via `Code/File` → `Preferences` → `Settings`. It's easier to enter these settings while editing the `settings.json` file, so click the Open (Open Settings) icon in the top right corner:
+1. Install the [ESLint package](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+2. Now we need to setup some VS Code settings via `Code/File` → `Preferences` → `Settings`. It's easier to enter these settings while editing the `settings.json` file, so click the Open (Open Settings) icon in the top right corner:
 
 ```js
-{
-  // this one is recommended, not required:
-  "formattingToggle.affects": ["formatOnSave"],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "eslint.alwaysShowStatus": true,
-  "eslint.format.enable": true,
-  "editor.formatOnPaste": false,
-  "editor.formatOnType": false,
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[mdx]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[graphql]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+// These are all my auto-save configs
+"editor.formatOnSave": true,
+// turn it off for JS and JSX, we will do this via eslint
+"[javascript]": {
+  "editor.formatOnSave": false
+},
+"[javascriptreact]": {
+  "editor.formatOnSave": false
+},
+// show eslint icon at bottom toolbar
+"eslint.alwaysShowStatus": true,
+// tell the ESLint plugin to run on save
+"editor.codeActionsOnSave": {
+  "source.fixAll": true
 }
-
 ```
 
 After attempting to lint your file for the first time, you may need to click on 'ESLint' in the bottom right and select 'Allow Everywhere' in the alert window.
 
 Finally you'll usually need to restart VS code. They say you don't need to, but it's never worked for me until I restart.
+
+## With WSL
+
+Can someone add this?
+
+## With JetBrains Products (IntelliJ IDEA, WebStorm, RubyMine, PyCharm, PhpStorm, etc)
+
+If you have previously configured ESLint to run via a File Watcher, [turn that off.](https://www.jetbrains.com/help/idea/using-file-watchers.html#enableFileWatcher)
+
+### If you choose Local / Per Project Install Above
+
+1. Open ESLint configuration by going to File > Settings (Edit > Preferences on Mac) > Languages & Frameworks > Code Quality Tools > ESLint (optionally just search settings for "eslint")
+1. Select **Automatic ESLint Configuration**
+1. Check **Run eslint --fix on save**
+
+### If you choose Global Install
+
+The following steps are for a typical Node / ESLint global installtion. If you have a customized setup, refer to JetBrains docs for more [ESLint Configuration Options](https://www.jetbrains.com/help/webstorm/eslint.html#ws_js_eslint_manual_configuration).
+
+1. Open ESLint configuration by going to File > Settings (Edit > Preferences on Mac) > Languages & Frameworks > Code Quality Tools > ESLint (optionally just search settings for "eslint")
+1. Select **Manual ESLint configuration**
+1. Choose your **Node interpreter** from the detected installations
+1. Select the global **ESLint package** from the dropdown
+1. Leave Configuration File as **Automatic Search**
+1. Check **Run eslint --fix on save**
+
+### Ensure the Prettier plugin is disabled if installed.
+
+1. Open Prettier configuration by going to File > Settings (Edit > Preferences on Mac) > Languages & Frameworks > Code Quality Tools > Prettier (optionally just search settings for "prettier")
+1. Uncheck both **On code reformat** and **On save**
+1. _Optional BUT IMPORTANT:_ If you have the Prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already.
+   1. Make sure the **Run for files** glob does not include `js,ts,jsx,tsx`.
+   2. An example glob for styles, config, and markdown. `{**/*,*}.{yml,css,sass,md}`
+
+## With Typescript
+
+Same instructions as above, just make sure you extend `adamansubtractm/typescript` instead of just `adamansubtractm`.
+
+## With Yarn
+
+It should just work, but if they aren't showing up in your package.json, try `npx install-peerdeps --dev eslint-config-adamansubtractm -Y`
+
+## Issues with ESLint not formatting code
+
+If you experience issues with ESLint not formatting the code or you receive a `Parsing error: Cannot find module '@babel/preset-react` error message then you need to check that you opened the folder where you installed and configured ESLint directly in VS Code. The correct folder to open will be the one where you installed the `eslint-config-adamansubtractm` npm package and where you created the `.eslintrc` file.
+
+Opening a parent folder or child folder in your code editor will cause ESLint to fail in finding the ESLint npm packages and the formatting won't work.
+
+```sh
+your-username
+  |
+  projects
+    |
+    cool-project # <- Open this folder directly in your code editor
+      .eslintrc
+      package.json
+      node_modules/
+      exercises/
+      playground/
+```

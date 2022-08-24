@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-adamansubtractm",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "description": "ESLint and Prettier Config with Typescript support from @AdamAnSubtractM.",
   "keywords": [
     "javascript",
@@ -8,11 +8,12 @@
     "eslint",
     "lint",
     "config",
-    "prettier"
+    "prettier",
+    "adamansubtractm"
   ],
   "main": "index.js",
   "repository": "git@github.com:AdamAnSubtractM/eslint-config-adamansubtractm.git",
-  "author": "Adam Knee <adamlknee+npm@gmail.com>",
+  "author": "Adam Knee <adamansubtractm@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
