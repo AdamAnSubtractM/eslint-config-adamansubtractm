@@ -4,7 +4,12 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:solid/recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -13,7 +18,14 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['html', 'prettier', 'react-hooks', 'react', '@typescript-eslint'],
+  plugins: [
+    'html',
+    'prettier',
+    'react-hooks',
+    'react',
+    'solid',
+    '@typescript-eslint',
+  ],
   settings: {
     react: {
       version: 'detect',
@@ -26,10 +38,20 @@ module.exports = {
       '.grahpql',
       '.md',
       '.mdx',
+      '.html',
     ],
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.graphql', '.md', '.mdx'],
+        extensions: [
+          '.js',
+          '.jsx',
+          '.ts',
+          '.tsx',
+          '.graphql',
+          '.md',
+          '.mdx',
+          '.html',
+        ],
       },
     },
   },
