@@ -34,7 +34,7 @@ I also install globally so that any project or rogue JS file I write will have l
 
 1. If you don't already have a `package.json` file, create one with `pnpm init`.
 
-2. Then we need to install everything needed by the config (a.k.a - the dreaded peer dependencies):
+2. Then we need to make sure that when we install this, everything needed by the config comes along too (a.k.a - the dreaded peer dependencies):
 
 - If you're using `pnpm` you can do this one of three ways:
 
@@ -56,7 +56,11 @@ I also install globally so that any project or rogue JS file I write will have l
   auto-install-peers=true
   ```
 
-3.
+3.  It's time to install the eslint config:
+
+```bash
+  pnpm i eslint-config-adamansubtractm --save-dev
+```
 
 4.  You can see in your package.json there are now a big list of devDependencies.
 
