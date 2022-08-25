@@ -23,8 +23,8 @@ module.exports = {
     'prettier',
     'react-hooks',
     'react',
-    'solid',
     '@typescript-eslint',
+    'solid',
   ],
   settings: {
     react: {
