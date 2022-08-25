@@ -8,7 +8,7 @@
 
 First things first, lets give credit where credit is due
 
-- Almost all of these settings and README instructions were forked from [Wes Bos' Eslint Config repo](https://github.com/wesbos/eslint-config-wesbos)
+- _Almost_ all of these settings and README instructions were forked from [Wes Bos' Eslint Config repo](https://github.com/wesbos/eslint-config-wesbos)
 
 ## What it does
 
