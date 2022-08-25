@@ -5,10 +5,9 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended', // Uses rules from `@typescript-eslint/eslint-plugin`,
-    'airbnb-typescript',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:solid/typescript',
+    'airbnb-typescript',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     // Layer in all the JS Rules
     './.eslintrc.js',
   ],
@@ -34,7 +33,6 @@ module.exports = {
         ignoreDeclarationMerge: true,
       },
     ],
-    'no-unused-vars': 0,
     '@typescript-eslint/no-floating-promises': 'off',
   },
   parserOptions: {

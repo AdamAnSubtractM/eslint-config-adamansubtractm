@@ -6,8 +6,8 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb',
     'plugin:solid/recommended',
+    'airbnb',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -23,8 +23,8 @@ module.exports = {
     'prettier',
     'react-hooks',
     'react',
-    '@typescript-eslint',
     'solid',
+    '@typescript-eslint',
   ],
   settings: {
     react: {
@@ -79,6 +79,18 @@ module.exports = {
     'import/extensions': ['error', 'never'],
     // checks for circal dependencies to a depth of 1
     'import/no-cycle': [2, { maxDepth: 1 }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/*.test.js',
+          '**/*.spec.js',
+          'jest.config.js',
+          '*.config.*',
+          '**/*.config.*',
+        ],
+      },
+    ],
     // allows you to add a anchor that isn't a valid link
     'jsx-a11y/href-no-hash': 'off',
     // will warn you when your anchor tag isnt a valid href
@@ -188,6 +200,7 @@ module.exports = {
         allow: ['resolve', 'reject', 'done', 'next', 'err', 'error'],
       },
     ],
+    'dot-notation': ['error', { allowKeywords: true }],
     // enforces single quotes
     quotes: [
       `error`,
